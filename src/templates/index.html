@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Disease Prediction</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: rgb(14, 17, 23);
+            /* Light mode background color */
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+
+        h1 {
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        form {
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="file"] {
+            margin-top: 8px;
+            margin-bottom: 16px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            color: black;
+            /* bos-shadow: 0px 2px 3px 4px; */
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+            color: white;
+        }
+
+        p.error {
+            color: red;
+            margin-top: 20px;
+        }
+
+        h2 {
+            margin-top: 20px;
+            color: #28a745;
+            /* Color for success messages */
+        }
+
+        /* Dark mode styles */
+        body.dark-mode {
+            background-color: #333;
+            color: #fff;
+        }
+
+        body.dark-mode h1 {
+            color: #61dafb;
+            /* Adjust color for dark mode */
+        }
+
+        body.dark-mode input[type="submit"] {
+            background-color: #61dafb;
+        }
+
+        body.dark-mode input[type="submit"]:hover {
+            background-color: #0a7bff;
+        }
+
+        .img-choose {
+            font-size: 15px;
+            margin-top: 5px;
+            margin-left: 65px
+        }
+
+        .wrap
+        {
+            margin:10px;
+            background-color:#4d434a;
+            padding: 15px 20px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="wrap">
+
+        <h1>Skin Disease Prediction</h1>
+
+        <form action="/predict" method="post" enctype="multipart/form-data">
+            <label for="file">Choose an image:</label>
+            <br>
+            <input class="img-choose" type="file" name="file" id="file" accept=".jpg, .jpeg, .png" required>
+            <br>
+            <input type="submit" value="Predict">
+
+
+            {% if error %}
+            <p class="error">{{ error }}</p>
+            {% endif %}
+
+            {% if predicted_disease %}
+            <h2 id="disease">Predicted Disease: {{ predicted_disease }}</h2>
+            {% endif %}
+</div>
+
+    <script>
+        // Automatically switch to dark mode based on user preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.body.classList.add('dark-mode');
+        }
+        var file = document.getElementById("file");
+        var disease = document.getElementById("disease");
+        file.addEventListener("click",function(){
+            disease.innerHTML="";
+        });
+    </script>
+</body>
+
+</html>
