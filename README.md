@@ -39,3 +39,7 @@ The model is trained using various deep learning techniques, including transfer 
 ## Results
 
 The model achieved a training accuracy of 92% and a testing accuracy of 65%. Detailed results, including confusion matrices and other metrics can fe found in the training directory.
+
+https://github.com/user-attachments/assets/a4bd558a-188d-4dbc-8c3e-8b8c02a4ee82
+
+
